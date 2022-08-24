@@ -1,0 +1,23 @@
+PANTALLA                
+
+		<!--Mensajes con sweetalert "error","warning","success","info -->
+                <script src="{{ asset('sweetalert/sweetalert.js') }}"></script>
+                @if (session('alert2'))
+                    <script type="text/javascript">
+                    swal("{{ session('alert2') }}", "Los datos del usuario fueron actualizados","success");
+                </script>
+                @endif
+
+
+CONTROLLER
+
+        try{
+            $user->update();
+            }
+        catch(\Throwable $e){
+
+            return redirect()->back()->with('alert', 'EL REGISTRO YA EXISTE');
+        }
+            return redirect()->back()->with('alert2','REGISTRO ACTUALIZADO');
+
+
